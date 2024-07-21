@@ -1,0 +1,226 @@
+{% extends "base.html" %} {% block title %}HOME{% endblock %} {% block content %}
+<!-- Home -->
+<div
+  class="home w-100 flex-col flex justify-center items-center h-svh gap-2 md:gap-4 sm:h-svh"
+  id="home"
+>
+  <h2 class="font-bold text-2xl md:text-4xl text-cyan-950 shadow-md">
+    The Perfect Place To
+  </h2>
+  <h1 class="font-black text-3xl md:text-5xl text-cyan-950 shadow-md">
+    Travel In Nepal
+  </h1>
+  <button>
+    <a
+      href="{% url 'packages' %}"
+      class="w-100 rounded-md bg-cyan-950 p-4 text-lg font-semibold text-white shadow-md sm:transition-all sm:hover:rounded-2xl sm:hover:shadow-lg"
+      >View Packages</a
+    >
+  </button>
+</div>
+
+<!-- About  -->
+<div class="about p-6" id="about">
+  <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950 p-4">
+    About Us
+  </h1>
+  <div
+    class="bg-white shadow-lg flex flex-col justify-center items-center gap-3 p-4 rounded-3xl md:flex md:flex-row md:p-0 md:rounded-full md:justify-between md:items-start h-full"
+  >
+    <div
+      class="ab-img rounded-full md:min-w-56 md:max-w-200 min-h-60 w-80 sm:w-2/5 bg-slate-400 bg-cover md:h-full"
+    ></div>
+    <p
+      class="w-full sm:w-full md:p-5 md:mr-12 md:mt-4 rounded-full text-justify"
+    >
+      <b>Himalayan Rasuwa tours and Travels</b> is your premier travel partner
+      in Nepal, dedicated to providing exceptional travel experiences that
+      capture the essence of this majestic Himalayan country. Established with a
+      passion for showcasing the natural beauty, rich culture, and adventurous
+      spirit of Nepal, we specialize in crafting personalized tours and travel
+      packages that cater to diverse interests and preferences. <br />
+      <b>Our Mission </b> <br />
+      At Himalayan Rasuwa Tours and Travels, our mission is to create
+      unforgettable journeys that inspire and enrich our clients' lives. We aim
+      to deliver the highest standards of service, ensuring every traveler
+      enjoys a seamless and memorable adventure in Nepal.
+    </p>
+  </div>
+</div>
+
+<!-- Blogs  -->
+
+<div id="blogs" class="bg-cyan-50 p-6 flex flex-col items-center">
+  <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950 p-4">
+    Latest Blogs
+  </h1>
+
+  <div class="main-blogs flex flex-wrap justify-evenly p-4 gap-4 w-full">
+    <!-- Insert Other Blogs In This Div  -->
+    {% for post in posts %} {% if post.IsFeatured %}
+    <!-- Blog 1 -->
+    <div
+      class="blog bg-white backdrop-blur-lg shadow-lg min-w-40 max-w-60 p-4 rounded-lg flex flex-col gap-1 text-cyan-900"
+    >
+      <h3 class="font-bold text-lg line-clamp-1">{{ post.title }}</h3>
+      <div
+        class="img w-full h-20 bg-cyan-900 rounded-lg bg-cover"
+        style="
+              background-image: url('{{ post.image.url }}');
+            "
+      ></div>
+      <p class="font-semibold flex flex-row gap-1 items-center">
+        <i class="fas fa-clock"></i>
+        <span>{{ post.created_date }}</span>
+      </p>
+      <p class="font-semibold flex flex-row gap-1 items-center">
+        <i class="fas fa-pen-nib"></i>
+        <span>admin</span>
+      </p>
+      <p class="text-clip line-clamp-5">{{ post.text | slice:"100" }}</p>
+      <a href="{% url 'blog_details' post.id %}">
+        <button class="bg-cyan-900 p-2 rounded-full font-bold text-white">
+          Read More
+        </button>
+      </a>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+
+  <a
+    href="{% url 'post_list' %}"
+    class="bg-white text-cyan-950 font-bold capitalize p-3 text-lg shadow-black shadow- w-max border-2 border-cyan-950 shadow-sm"
+    >View all blogs</a
+  >
+</div>
+<hr class="to-black" />
+<!-- Packages -->
+<div
+  id="packages"
+  class="packages flex justify-center flex-col items-center p-6 gap-5 bg-gradient-to-b from-white to-cyan-50 z-1"
+>
+  <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950">
+    Best Packages
+  </h1>
+<div class="center">
+  <div class="packages flex flex-wrap gap-3 justify-evenly w-full">
+    <!-- Insert Packages Here  -->
+    {% for package in packages %} {% if package.IsFeatured %}
+    <div class="text-cyan-950 min-w-56 max-w-80 bg-white backdrop-blur-sm bg-opacity-55 shadow-md border-2 border-black border-opacity-5 rounded-xl p-3 flex flex-col gap-1 z-0">
+      <h3 class="font-bold text-xl text-center line-clamp-1">{{ package.title }}</h3>
+      <div class="w-full rounded-xl h-40 bg-cover" style="background-image: url('{{ package.image.url }}');"></div>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-dollar"></i>{{ package.price }}</p>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-clock"></i>Flexible</p>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa-solid fa-tag"></i>{{ package.difficulty }}</p>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-location-dot"></i>{{ package.title }}</p>
+      <p class="line-clamp-3">
+        {{ package.description | slice:"200" }}
+      </p>
+      <a href="{% url 'package_details' package.id %}" class="bg-cyan-900 text-white shadow-md font-semibold text-center p-2 rounded-full">Detail</a>
+      
+    </div>
+  {% endif %} {% endfor %}
+  
+</div>
+<center><a
+    href="{% url 'packages' %}"
+    class="bg-white text-cyan-950 font-bold capitalize p-3 text-lg shadow-black shadow- w-max border-2 border-cyan-950 shadow-sm "
+    >View All Packages</a
+  ></center>
+</div>
+
+<hr class="to-black" />
+
+<!-- Contact -->
+<div class="bg-white sm:p-6" id="contact">
+  <h1 class="font-black text-3xl sm:text-4xl text-center text-cyan-950">
+    Get In Touch
+  </h1>
+  <div
+    class="mt-4 inner-form bg-cyan-50 rounded-lg overflow-hidden flex flex-col sm:flex-row shadow-md"
+  >
+    <div
+      class="details sm:w-full p-4 flex flex-col gap-1.5 bg-cyan-950 rounded-b-xl sm:rounded-lg text-gray-200"
+    >
+      <p class="flex font-semibold gap-1 items-center">
+        <i class="fa-solid fa-location-dot text-g"></i>Trakeshwor -5 , Kathmandu
+      </p>
+      <p class="flex font-semibold gap-1 items-center text-g">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:"> himalayanrasuwatoursandtravel@gmail.com</a>
+      </p>
+      <p class="flex font-semibold gap-1 items-center">
+        <i class="fa-solid fa-phone text-g"></i>
+        <a href="tel:+9779812345678">+9779812345678</a>
+      </p>
+
+      <p class="font-bold text-lg mt-2.5">Social Links</p>
+      <div class="links flex gap-4">
+        <a href=""
+          ><i
+            class="fa-brands fa-facebook text-xl hover:transition-all hover:text-white"
+          ></i
+        ></a>
+        <a href=""
+          ><i
+            class="fa-brands fa-instagram text-xl hover:transition-all hover:text-white"
+          ></i
+        ></a>
+        <a href=""
+          ><i
+            class="fa-brands fa-twitter text-xl hover:transition-all hover:text-white"
+          ></i
+        ></a>
+      </div>
+    </div>
+    <form
+      method="post"
+      action=""
+      class="bg-cyan-50 flex flex-col gap-2 p-4 sm:w-full sm:gap-2"
+    >
+      {% csrf_token %}
+      <h3 class="font-bold text-2xl text-center">Contact Form</h3>
+      <input
+        type="text"
+        name="first_name"
+        id="id_first_name"
+        placeholder="First Name"
+        class="p-2 rounded-md outline-none text-cyan-950 shadow-sm border-black"
+      />
+      <input
+        type="text"
+        name="last_name"
+        id="id_last_name"
+        placeholder="Last Name"
+        class="p-2 rounded-md outline-none text-cyan-950 shadow-sm"
+      />
+      <input
+        type="email"
+        name="email"
+        id="id_email"
+        placeholder="Email"
+        class="p-2 rounded-md outline-none text-cyan-950 shadow-sm border-black"
+      />
+      <input
+        type="number"
+        name="phone"
+        id="id_phone"
+        placeholder="Insert Your Number"
+        class="p-2 rounded-md outline-none text-cyan-950"
+      />
+      <textarea
+        name="message"
+        id="id_message"
+        placeholder="Message"
+        class="p-2 rounded-md outline-none text-cyan-950 shadow-sm border-black"
+      ></textarea>
+      <button
+        type="submit"
+        class="bg-cyan-950 px-4 py-2 rounded-full font-semibold text-lg text-cyan-50"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

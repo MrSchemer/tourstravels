@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block title %}{{ package.title }}{% endblock %} {% block content %}
+<div class="package sm:mt-20 mt-12 p-4 text-cyan-950">
+  <div class="p-4 max-w-screen-lg mx-auto">
+    <div class="flex justify-between items-center mb-4">
+      <button class="text-xl">&larr;</button>
+      <h1 class="text-2xl">{{ package.title }}</h1>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded">Book Now</button>
+    </div>
+    <div class="mb-4">
+      <img
+        src="{{ package.image.url }}"
+        alt="Banner"
+        class="w-full h-80 object-cover rounded"
+      />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="col-span-1">
+        <div class="border p-4 rounded mb-4">
+          <h2 class="text-xl mb-2">Trip Details</h2>
+          <div class="flex items-center mb-2">
+            <i class="fa fa-location-dot"></i>
+            <span>{{ package.location }}</span>
+          </div>
+          <div class="flex items-center mb-2">
+            <i class="fa fa-clock"></i>
+            <span>Flexible</span>
+          </div>
+          <div class="flex items-center mb-2">
+            <i class="fa fa-tag"></i>
+            <span>{{ package.difficulty }}</span>
+          </div>
+          <div class="flex items-center mb-2">
+            <i class="fa fa-dollar"></i>
+            <span>{{ package.price }}</span>
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="col-span-2">
+        <div class="border p-4 rounded mb-4">
+          <h2 class="text-xl mb-2">Trip Details</h2>
+          <p>Description:</p>
+          {{ package.description }}
+        </div>
+        <div class="border p-4 rounded">
+          <h2 class="text-xl mb-2">Itinerary</h2>
+          {{ package.itinerary }}
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <a href="{% url 'book' package.id %}"><button class="bg-green-500 text-white px-4 py-2 rounded" >
+        Book Now
+      </button></a>
+    </div>
+  </div>
+<!-- Other Packages  -->
+<div id="packages" class="packages flex justify-center flex-col items-center gap-5 bg-cyan-50 z-1 p-4">
+  <h1 class="font-bold text-2xl sm:text-3xl text-center text-cyan-950" >Other Simlar Packages</h1>
+
+
+  <div class="packages flex flex-col items-center  flex-wrap gap-3 justify-evenly ">
+    <!-- Insert Packages Here  -->
+    {% for package in other_packages %}
+    {% if package.IsFeatured %}
+    <!-- Package 1  -->
+    <div class="text-cyan-950 min-w-56 max-w-80 bg-cyan-5 backdrop-blur-sm bg-opacity-55 shadow-md border-2 border-black border-opacity-5 rounded-xl p-3 flex flex-col gap-1 z-0">
+      <h3 class="font-bold text-xl text-center line-clamp-1">{{ package.title }}</h3>
+      <div class="w-full rounded-xl h-40 bg-cover" style="background-image: url('{{ package.image.url }}');"></div>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-dollar"></i>{{ package.price }}</p>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-clock"></i>Flexible</p>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa-solid fa-tag"></i>{{ package.difficulty }}</p>
+      <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-location-dot"></i>{{ package.location }}</p>
+      <p class="line-clamp-3">
+        {{ package.description | slice:"200" }}
+      </p>
+      <a href="{% url 'package_details' package.pk %}" class="bg-cyan-900 text-white shadow-md font-semibold text-center p-2 rounded-full">Detail</a>
+      
+    </div>
+    {% endif %}
+    {% endfor %}
+    <a href="{% url 'packages' %}" class="bg-white text-cyan-950 font-bold capitalize p-3 text-lg shadow-black shadow- w-max border-2 border-cyan-950 shadow-sm">View All Packages</a>
+  </div>
+
+</div>
+{% endblock content %}

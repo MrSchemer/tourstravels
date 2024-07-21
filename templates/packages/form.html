@@ -1,0 +1,192 @@
+{% extends 'base.html' %} {% block title %}{{ package.title }}{% endblock %} {% block content %}
+<div class="package sm:mt-20 mt-12 p-4 text-cyan-950">
+  <div
+    class="max-w-2xl mx-auto p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md"
+  >
+    <h2 class="text-2xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
+      {{ package.title }} - Booking Form
+    </h2>
+    <div class="mb-4">
+      <img
+        src="{{ package.image.url }}"
+        alt="Picture"
+        class="w-full h-48 object-cover rounded-lg"
+      />
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div>
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >First Name*</label
+          >
+          <input
+            type="text"
+            name="first_name"
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+            required
+          />
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >Middle Name</label
+          >
+          <input
+            type="text"
+            name="middle_name"
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+          />
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >Last Name*</label
+          >
+          <input
+            type="text"
+            name="last_name"
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+            required
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+            required
+            />
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >Phone</label
+          >
+          <input
+            type="tel"
+            name="phone"
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+            required
+            />
+        </div>
+      </div>
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          Trip Detail:
+        </h3>
+        <div class="mt-2">
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >Trip Destination</label
+          >
+          <input
+            type="text"
+            name="trip_destination"
+            value="{{ package.title }}"
+            disabled
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm bg-zinc-100 dark:bg-zinc-700 dark:text-zinc-300"
+          />
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label
+              class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >Number of People</label
+            >
+            <input
+              type="number"
+              name="number_of_people"
+              id="number_of_people"
+              min="1"
+              class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+              required
+              />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >Date - Start Trip</label
+            >
+            <input
+              type="date"
+              name="date_start_trip"
+              class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+              required
+              />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label
+              class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >Address</label
+            >
+            <input
+              type="text"
+              name="address"
+              class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >Pickup Location</label
+            >
+            <input
+              type="text"
+              name="pickup_location"
+              class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+              required
+              />
+          </div>
+        </div>
+        <div class="mt-4">
+          <label
+            class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >Additional Preference</label
+          >
+          <textarea
+            name="additional_preference"
+            class="mt-1 block w-full p-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-zinc-300"
+          ></textarea>
+        </div>
+      </div>
+      <div id="total_price" class="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+        Total Price: $0
+      </div>
+      <input type="hidden" name="package_id" value="{{ package.id }}" />
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-800"
+        >
+          Submit Detail
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  document.getElementById('number_of_people').addEventListener('input', function() {
+    const packagePrice = {{ package.price }};
+    let numberOfPeople = this.value;
+    let totalPrice = numberOfPeople * packagePrice;
+
+    // Apply 10% discount for more than 5 people
+    if (numberOfPeople > 5) {
+      totalPrice *= 0.9; // Apply 10% discount
+    }
+
+    // Update the displayed price
+    document.getElementById('total_price').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+  });
+</script>
+{% endblock %}

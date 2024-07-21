@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Packages{% endblock %}
+{% block content %}
+<div id="packages" class=" rounded-br-3xl sm:mt-20 mt-12 packages flex justify-center flex-col items-center p-6 gap-5 bg-gradient-to-b from-white to-cyan-50 z-1 overflow-hidden">
+    <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950" >Recent Packages</h1>
+
+
+    <div class="packages flex flex-wrap gap-5 justify-evenly w-full">
+
+      <!-- Insert Packages Here  -->
+      {% for package in packages %}
+
+      <!-- Package 1  -->
+      <div class="text-cyan-950 min-w-56 max-w-80 bg-white backdrop-blur-sm bg-opacity-55 shadow-md border-2 border-black border-opacity-5 rounded-xl p-3 flex flex-col gap-1 z-0">
+        <h3 class="font-bold text-xl text-center line-clamp-1">{{ package.title }}</h3>
+        <div class="w-full rounded-xl h-40 bg-cover" style="background-image: url('{{ package.image.url }}');"></div>
+        <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-dollar"></i>{{ package.price }}</p>
+        <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-clock"></i>Flexible</p>
+        <p class="flex flex-row items-center font-semibold gap-1"><i class="fa-solid fa-tag"></i>{{ package.difficulty }}</p>
+        <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-location-dot"></i>{{ package.title }}</p>
+        <p class="line-clamp-3">
+          {{ package.description | slice:"200" }}
+        </p>
+        <a href="{% url 'package_details' package.id %}" class="bg-cyan-900 text-white shadow-md font-semibold text-center p-2 rounded-full">Detail</a>
+        
+      </div>
+
+      {% endfor %}
+    </div>
+
+  </div>
+<!-- Best Selling Packages -->
+
+    <div id="packages" class="packages flex justify-center flex-col items-center p-6 gap-5 bg-gradient-to-b from-white to-cyan-50 z-1">
+        <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950" >Best Selling Packages</h1>
+  
+  
+        <div class="packages flex flex-wrap gap-3 justify-evenly w-full">
+
+          
+          {% for package in packages %}
+          {% if package.IsFeatured == True %}
+          <!-- Package 1  -->
+          <div class="text-cyan-950 min-w-56 max-w-80 bg-white backdrop-blur-sm bg-opacity-55 shadow-md border-2 border-black border-opacity-5 rounded-xl p-3 flex flex-col gap-1 z-0">
+            <h3 class="font-bold text-xl text-center line-clamp-1">{{ package.title }}</h3>
+            <div class="w-full rounded-xl h-40 bg-cover" style="background-image: url('{{ package.image.url }}');"></div>
+            <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-dollar"></i>{{ package.price }}</p>
+            <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-clock"></i>Flexible</p>
+            <p class="flex flex-row items-center font-semibold gap-1"><i class="fa-solid fa-tag"></i>{{ package.difficulty }}</p>
+            <p class="flex flex-row items-center font-semibold gap-1"><i class="fa fa-location-dot"></i>{{ package.title }}</p>
+            <p class="line-clamp-3">
+              {{ package.description | slice:"200" }}
+            </p>
+            <a href="{% url 'package_details' package.id %}" class="bg-cyan-900 text-white shadow-md font-semibold text-center p-2 rounded-full">Detail</a>
+            
+          </div>
+
+          {% endif %}
+          {% endfor %}
+  
+        </div>
+  
+      </div>
+{% endblock %}

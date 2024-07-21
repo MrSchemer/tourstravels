@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> {% block title %} {% endblock %} | Himalayan rasuwa tours and travels</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .home {
+        background-image: url("{% static 'images/one.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        height: 100svh;
+      }
+      a {
+        display: inline-block;
+      }
+
+      .ab-img {
+        background-image: url("{% static 'images/tibetuplift_himalayas_raimond-klavins-l6jxljmeuoo-unsplash_0.jpeg' %}");
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 scroll-smooth">
+    <!-- Navbar -->
+    <div class="out md:flex md:justify-center z-10">
+      <nav
+        class="bg-cyan-950 md:bg-white md:flex md:flex-row items-center justify-between fixed w-full top-0 md:bg-opacity-50 md:backdrop-blur-md md:my-5 md:rounded-full md:px-4 md:py-2 md:fixed md:w-11/12 md:m-auto md:shadow-md z-10"
+      >
+        <div class="logo">
+          <h2
+            class="md:text-xl text-2xl font-extrabold p-2 text-cyan-50 md:text-cyan-950"
+          >
+            HRTT
+          </h2>
+        </div>
+
+        <ul
+          class="nav-icons bg-cyan-600 flex-col justify-center items-center pb-2 transition-all duration-1000 overflow-hidden md:flex md:flex-row md:pb-0 md:m-2 md:bg-transparent md:gap-4 hidden"
+          id="icons"
+        >
+          <li class="w-full">
+            <a
+              href="{% url 'home' %}"
+              class="w-full inline-block p-2 text-center font-semibold hover:bg-cyan-50 hover:text-cyan-950 border-b-cyan-950 border-b-2 bg-cyan-600 text-cyan-100 md:border-0 md:hover:rounded-full md:px-4 md:text-cyan-950 md:bg-transparent md:font-semibold md:hover:bg-cyan-700 md:hover:text-white"
+              >Home</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="{% url 'home' %}#about"
+              class="w-full inline-block p-2 text-center font-semibold hover:bg-cyan-50 hover:text-cyan-950 border-b-cyan-950 border-b-2 bg-cyan-600 text-cyan-100 md:border-0 md:hover:rounded-full md:px-4 md:hover:bg-cyan-700 md:hover:text-white md:text-cyan-950 md:bg-transparent md:font-semibold"
+              >About</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="{% url 'post_list' %}"
+              class="w-full inline-block p-2 text-center font-semibold hover:bg-cyan-50 hover:text-cyan-950 border-b-cyan-950 border-b-2 bg-cyan-600 text-cyan-100 md:border-0 md:hover:rounded-full md:px-4 md:hover:bg-cyan-700 md:hover:text-white md:text-cyan-950 md:bg-transparent md:font-semibold"
+              >Blogs</a
+            >
+          </li>
+          <li class="w-full">
+            <a
+              href="/packages"
+              class="w-full inline-block p-2 text-center font-semibold hover:bg-cyan-50 hover:text-cyan-950 border-b-cyan-950 border-b-2 bg-cyan-600 text-cyan-100 md:border-0 md:hover:rounded-full md:px-4 md:hover:bg-cyan-700 md:hover:text-white md:text-cyan-950 md:bg-transparent md:font-semibold"
+              >Packages</a
+            >
+          </li>
+          <li class="w-100 flex items-center justify-center pt-2 md:pt-0">
+            <a
+              href="#contact"
+              class="inline-block p-2 text-center bg-cyan-900 w-11/12 font-bold border-cyan-950 text-cyan-50 rounded-full md:px-3 md:w-max hover:bg-cyan-400 md:bg-cyan-950 md:text-white md:border-0"
+              >Contact</a
+            >
+          </li>
+        </ul>
+
+        <div
+          class="ham-icon flex-col gap-5 w-max absolute top-2.5 right-2 cursor-pointer group md:hidden"
+          id="ham-icon"
+          onclick="hamIcon()"
+        >
+          <div
+            class="bar w-5 h-1 bg-cyan-50 rounded-full m-1 group-[.is-active]:rotate-45 group-[.is-active]:absolute transition-all"
+          ></div>
+          <div
+            class="bar w-5 h-1 bg-cyan-50 rounded-full m-1 group-[.is-active]:hidden transition-all"
+          ></div>
+          <div
+            class="bar w-5 h-1 bg-cyan-50 rounded-full m-1 group-[.is-active]:-rotate-45 transition-all"
+          ></div>
+        </div>
+      </nav>
+    </div>
+   
+    {% block content %} {% endblock %}
+    
+    <!-- Footer  -->
+    <div class="footer bg-cyan-950 w-full p-4">
+        <p class="text-lg font-semibold text-cyan-50">
+          Copyright &copy; 2024 | Himalayan Rasuwa tours and Travels
+        </p>
+      </div>
+    </body>
+  </html>
+  

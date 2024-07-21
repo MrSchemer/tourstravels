@@ -1,0 +1,62 @@
+{% extends 'base.html' %}{% block title %}Blogs{% endblock %}{% block content %}
+<div id="blogs" class="sm:mt-20 mt-12 bg-cyan-50 p-2 flex flex-col items-center">
+    <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950 p-4" >Recent Blogs</h1>
+    
+    <div class="main-blogs flex flex-wrap justify-evenly p-2 gap-4 w-full">
+      <!-- Insert Other Blogs In This Div  -->
+      <!-- Blog 1 -->
+      {% for post in posts %}
+      <div class="blog bg-white backdrop-blur-lg shadow-lg min-w-40 max-w-60 p-4 rounded-lg flex flex-col gap-1 text-cyan-900 ">
+        <h3 class="font-bold text-lg line-clamp-1">{{ post.title }}</h3>
+        <div class="img w-full h-20 bg-cyan-900 rounded-lg bg-cover" style="background-image: url('{{ post.image.url }}');"></div>
+        <p class="font-semibold flex flex-row gap-1 items-center">
+          
+          <i class="fas fa-clock"></i>
+          <span>{{ post.created_date}}</span>
+          
+        </p>
+        <p class="font-semibold flex flex-row gap-1 items-center">
+          <i class="fas fa-pen-nib"></i>
+          <span>admin</span>
+          
+        </p>
+        <p class="text-clip line-clamp-5">{{ post.text | slice:"100" }}</p>
+        <a class="bg-cyan-900 p-2 rounded-full font-bold text-white text-center" href="{% url 'blog_details' post.id %}">Read More</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <hr>
+  <!-- Most Popular Blogs -->
+  <div id="blogs" class=" bg-cyan-50 p-2 flex flex-col items-center">
+    <h1 class="font-black text-2xl sm:text-3xl text-center text-cyan-950 p-4" >Most Popular Blogs</h1>
+    
+    <div class="main-blogs flex flex-wrap justify-evenly p-2 gap-4 w-full">
+      <!-- Insert Other Blogs In This Div  -->
+      {% for post in posts %}
+      {% if post.IsFeatured %}
+      <div class="blog bg-white backdrop-blur-lg shadow-lg min-w-40 max-w-60 p-4 rounded-lg flex flex-col gap-1 text-cyan-900 ">
+        <h3 class="font-bold text-lg line-clamp-1">{{ post.title }}</h3>
+        <div class="img w-full h-20 bg-cyan-900 rounded-lg bg-cover" style="background-image: url('{{ post.image.url }}');"></div>
+        <p class="font-semibold flex flex-row gap-1 items-center">
+          
+          <i class="fas fa-clock"></i>
+          <span>{{ post.created_date}}</span>
+          
+        </p>
+        <p class="font-semibold flex flex-row gap-1 items-center">
+          <i class="fas fa-pen-nib"></i>
+          <span>admin</span>
+          
+        </p>
+        <p class="text-clip line-clamp-5">{{ post.text | slice:"100" }}</p>
+        <a class="bg-cyan-900 p-2 text-center rounded-full font-bold text-white" href="{% url 'blog_details' post.id %}">Read More</a>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
